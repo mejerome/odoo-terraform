@@ -6,6 +6,10 @@ variable "key_name" {
   default = "mejerome_2"
 }
 
+variable "private_key" {
+  default = "../mejerome_2.pem"
+}
+
 variable "vpc_cidr_block" {
   default = "10.22.0.0/16"
 }

@@ -37,7 +37,20 @@ resource "aws_instance" "odoo" {
     network_interface_id = aws_network_interface.odoo_nic.id
     device_index         = 0
   }
+  provisioner "remote-exec" {
+    inline = ["sudo apt update", "sudo apt install python3 -y", "echo Done!"]
 
+    connection {
+      host        = self.public_ip
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file(var.private_key)
+    }
+  }
+
+  provisioner "local-exec" {
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i '${self.public_ip},' --private-key ${var.private_key} playbook/main.yml"
+  }
   tags = {
     Name = "Odoo-Server"
   }

@@ -17,7 +17,7 @@
       git:
         repo: "{{ odoo_repo }}"
         dest: "{{ odoo_dir }}/odoo-server"
-        single_branch: yes
+        # single_branch: yes
         version: "{{ odoo_version}}"
         depth: 1
         clone: yes
@@ -37,7 +37,7 @@
 
     - name: Copy odoo.conf file with owner and permissions
       template:
-        src: "/vagrant/config/odoo.conf.j2"
+        src: "/home/jerome/github/odoo-terraform/config/odoo.conf.j2"
         dest: "/etc/odoo.conf"
         owner: "{{ odoo_user}}"
         group: "{{ odoo_group }}"
@@ -45,7 +45,7 @@
 
     - name: Copy odoo.service file with owner and permissions
       template:
-        src: "/vagrant/config/odoo.service.j2"
+        src: "/home/jerome/github/odoo-terraform/config/odoo.service.j2"
         dest: "/etc/systemd/system/odoo.service"
         owner: "root"
         group: "root"
@@ -54,5 +54,3 @@
     - name: Start odoo service
       shell: "systemctl restart odoo.service"
     
-
-    - debug: var=hostvars[inventory_hostname]['ansible_eth1']['ipv4']['address']
