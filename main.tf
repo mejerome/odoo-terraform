@@ -30,7 +30,7 @@ resource "aws_network_interface" "odoo_nic" {
 
 resource "aws_instance" "odoo" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  instance_type = "t3.small"
   key_name = var.key_name
   
   network_interface {

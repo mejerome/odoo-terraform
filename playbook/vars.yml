@@ -1,13 +1,13 @@
 odoo_user: odoo
 odoo_group: odoo
 odoo_dir: /opt/odoo
-odoo_version: 15.0
+odoo_version: 14.0
 odoo_repo: https://github.com/odoo/odoo
 odoo_user_db: odoo
 odoo_password_db: odoo
 admin_passwd: odoo
 
-home_dir: /home/vagrant
+home_dir: ~/
 
 ansible_python_interpreter: /usr/bin/python3
 
