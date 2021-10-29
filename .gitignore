@@ -4,6 +4,7 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+custom_addons/
 
 # Crash log files
 crash.log

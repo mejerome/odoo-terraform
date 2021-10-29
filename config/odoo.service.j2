@@ -1,0 +1,10 @@
+[Unit]
+   Description=Odoo
+   Documentation=http://www.odoo.com
+   [Service]
+   # Ubuntu/Debian convention:
+   Type=simple
+   User=odoo
+   ExecStart=/opt/odoo/odoo-server/odoo-bin -c /etc/odoo.conf
+   [Install]
+   WantedBy=default.target

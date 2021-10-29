@@ -1,0 +1,4 @@
+---
+- import_playbook: prep.yml
+- import_playbook: postgres.yml
+- import_playbook: odoo.yml

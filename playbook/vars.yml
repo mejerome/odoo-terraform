@@ -1,0 +1,24 @@
+odoo_user: odoo
+odoo_group: odoo
+odoo_dir: /opt/odoo
+odoo_version: 15.0
+odoo_repo: https://github.com/odoo/odoo
+odoo_user_db: odoo
+odoo_password_db: odoo
+admin_passwd: odoo
+
+home_dir: /home/vagrant
+
+ansible_python_interpreter: /usr/bin/python3
+
+postgresql_service_state: started
+postgresql_service_enabled: true
+postgres_users_no_log: false
+
+postgresql_users:
+  - name: "{{ odoo_user_db }}" #required; the rest are optional
+    password: "{{ odoo_password_db }}" # defaults to not set
+    priv: ALL # defaults to not set
+    state: present # defaults to 'present'
+    db: postgres
+    role_attr_flags: CREATEDB,NOSUPERUSER
