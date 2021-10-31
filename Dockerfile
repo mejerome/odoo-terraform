@@ -1,6 +1,6 @@
 FROM debian:bullseye-slim
-MAINTAINER Syslog Solution <jerome@sysloggh.com>
-SHELL ["/bin/bash", "-xo", "pipeline", "-c"]
+# MAINTAINER Syslog Solution <jerome@sysloggh.com>
+# SHELL ["/bin/bash", "-xo", "pipeline", "-c"]
 
 ENV LANG C.UTF-8
 
@@ -69,17 +69,16 @@ RUN chown odoo /etc/odoo/odoo.conf \
     && mkdir -p /mnt/extra-addons \
     && chown -R odoo /mnt/extra-addons
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
-COPY ./lightsail/custom-addons /mnt/extra-addons
+COPY ./lightsail/custom_addons /mnt/extra-addons
 # Expose Odoo services
-EXPOSE 8069 8071 8072
+EXPOSE 8069
 
 # Set the default config file
 ENV ODOO_RC /etc/odoo/odoo.conf
 
-COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
+# COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
 # Set default user when running the container
 USER odoo
 
-# ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]

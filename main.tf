@@ -1,23 +1,23 @@
 provider "aws" {
   profile = "default"
-  region  = "us-east-2"
+  region  = "us-east-1"
 }
 
-data "aws_ami" "ubuntu" {
-  most_recent = true
+# data "aws_ami" "ubuntu" {
+#   most_recent = true
 
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
+#   filter {
+#     name   = "name"
+#     values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+#   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
+#   filter {
+#     name   = "virtualization-type"
+#     values = ["hvm"]
+#   }
 
-  owners = ["099720109477"] # Canonical
-}
+#   owners = ["099720109477"] # Canonical
+# }
 
 resource "aws_network_interface" "odoo_nic" {
   subnet_id   = aws_subnet.public_sub.id
@@ -29,8 +29,8 @@ resource "aws_network_interface" "odoo_nic" {
 }
 
 resource "aws_instance" "odoo" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  ami           = var.odoo_ami
+  instance_type = "t2.small"
   key_name = var.key_name
   
   network_interface {

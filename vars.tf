@@ -2,8 +2,12 @@ variable "tag_name" {
   default = "tf-ssx-test"
 }
 
+variable "odoo_ami" {
+  default = "ami-060bf7f5257d9bd73"
+}
+
 variable "key_name" {
-  default = "mejerome_2"
+  default = "odoo-key"
 }
 
 variable "vpc_cidr_block" {
