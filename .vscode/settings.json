@@ -2,13 +2,13 @@
   "sqltools.connections": [
     {
       "previewLimit": 50,
-      "server": "ls-cb7f3eb72b3d2af9b30ed566eba28b1a83d4a956.caznurwcpv94.us-east-1.rds.amazonaws.com",
+      "server": "localhost",
       "port": 5432,
       "driver": "PostgreSQL",
-      "name": "lightsail_db",
+      "name": "local_pg",
       "database": "postgres",
-      "username": "odoo_db",
-      "password": ";-JLM[CB]tddFU}+Gj9[1`tb]6l^!i5^"
+      "username": "odoo",
+      "password": "odoo"
     }
   ]
 }
