@@ -47,4 +47,8 @@ resource "aws_route53_record" "ssxodoo" {
   records = [
     aws_instance.odoo.public_ip,
   ]
+  
+  depends_on = [
+    aws_instance.odoo,
+  ]
 }
