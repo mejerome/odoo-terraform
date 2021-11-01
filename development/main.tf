@@ -45,7 +45,7 @@ resource "aws_route53_record" "ssxodoo" {
   ttl     = "300"
   
   records = [
-    aws_instance.odoo.public_ip,
+    aws_instance.odoo.public_dns,
   ]
   
   depends_on = [
