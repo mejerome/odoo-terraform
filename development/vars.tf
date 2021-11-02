@@ -1,5 +1,5 @@
 variable "tag_name" {
-  default = "tf-ssx-test"
+  default = "tf-ssx-odoo"
 }
 
 variable "odoo_ami" {

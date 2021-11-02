@@ -5,7 +5,7 @@ provider "aws" {
 
 resource "aws_network_interface" "odoo_nic" {
   subnet_id   = aws_subnet.public_sub.id
-  security_groups = [aws_security_group.ssh_sg.id, aws_security_group.odoo_sg.id]
+  security_groups = [aws_security_group.ssh_sg.id, aws_security_group.odoo_sg.id, aws_security_group.https_sg.id]
 
   tags = {
     Name = "primary_network_interface"
