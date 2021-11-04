@@ -51,3 +51,21 @@ resource "aws_security_group" "https_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_security_group" "ntpd_sg" {
+  name = "allow_ntpd"
+  vpc_id = aws_vpc.ssx_vpc.id
+  ingress {
+    from_port   = 123
+    to_port     = 123
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
