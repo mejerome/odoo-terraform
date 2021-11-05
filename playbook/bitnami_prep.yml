@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+
+  vars:
+    ntp_enabled: true
+    ntp_timezone: America/New_York
+
+  roles:
+    - geerlingguy.ntp
+
+  tasks:
+    - name: "Replace line in file examples"
+      replace: 
+        path: /opt/bitnami/odoo/conf/odoo.conf
+        regexp: '/opt/bitnami/odoo/addons'
+        replace: '/opt/bitnami/odoo/addons,/home/bitnami/custom_addons'
+        backup: yes
+
+    - name: "Restart all odoo related services"
+      shell: "/opt/bitnami/ctlscript.sh restart"
+
+    - name: "Install necessary python libraries"
+      shell: "pip3 install --upgrade pip; pip3 install paramiko dropbox"

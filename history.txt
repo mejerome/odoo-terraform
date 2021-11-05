@@ -1,0 +1,334 @@
+    1  clear
+    2  cd custom_addons/
+    3  pwd
+    4  sudo nano /opt/bitnami/odoo/conf/odoo.conf 
+    5  sudo /opt/bitnami/ctlscript.sh restart
+    6  cd  ~
+    7  clear
+    8  sudo installdir/bncert-tool
+    9  sudo /opt/bitnami/bncert-tool
+   10  sudo nano /etc/hosts
+   11  sudo /opt/bitnami/bncert-tool
+   12  clear
+   13  sudo reboot now
+   14  tail -f /opt/bitnami/odoo/log/odoo-server.log 
+   15  cat /opt/bitnami/odoo/conf/odoo.conf 
+   16  tail -f /opt/bitnami/odoo/log/odoo-server.log 
+   17  sudo su postgres
+   18  clear
+   19  exot
+   20  exit
+   21  clear
+   22  ls
+   23  nano postgres_backup.sh
+   24  cat /opt/bitnami/odoo/conf/odoo.conf 
+   25  nano postgres_backup.sh
+   26  clear
+   27  aws s3 ls
+   28  aws configure
+   29  aws s3 ls
+   30  nano postgres_backup.sh
+   31  set -e
+   32  clear
+   33  ls
+   34  nano postgres_backup.sh
+   35  echo 5d6b923310f452a8a2c4e03ed8244ead4feb74aa8c92943213f71a48bdbe57b0 > .pgpass
+   36  cat .pgpass 
+   37  clear
+   38  nano postgres_backup.sh
+   39  sudo chmod +x postgres_backup.sh
+   40  ./postgres_backup.sh 
+   41  nano postgres_backup.sh
+   42  psql -U bn_odoo -w bitnami_odoo
+   43  ls
+   44  ls ~
+   45  ls ../
+   46  cat .pgpass 
+   47  ls -al
+   48  rm postgres_backup.sh.save
+   49  rm postgres_backup.sh.save.1 
+   50  clear
+   51  psql -U bn_odoo -w bitnami_odoo
+   52  sudo chmod 0600 .pgpass 
+   53  psql -U bn_odoo -w bitnami_odoo
+   54  nano .pgpass 
+   55  psql
+   56  psql -U bn_odoo
+   57  psql -h
+   58  psql --help
+   59  psql -U bn_odoo -w bitnami_odoo
+   60  clear
+   61  nano postgres_backup.sh
+   62  ./postgres_backup.sh 
+   63  nano postgres_backup.sh
+   64  ./postgres_backup.sh 
+   65  psql -U bn_odoo -w ssx-restored-coa
+   66  psql -U bn_odoo -w bitnami_odoo
+   67  cat /opt/bitnami/odoo/conf/odoo.conf 
+   68  psql -U bn_odoo -w bitnami_odoo
+   69  psql -U bn_odoo -w ssx-restored-coa
+   70  nano .pgpass 
+   71  psql -U bn_odoo -w ssx-restored-coa
+   72  ./postgres_backup.sh 
+   73  cat /opt/bitnami/odoo/conf/odoo.conf 
+   74  tail -f /opt/bitnami/odoo/log/odoo-server.log 
+   75  clear
+   76  ls
+   77  clear
+   78  aws s3 ls
+   79  aws s3 cp s3://ssx-postgres-backups/2021-11-03/backup-ssx-restored-coa-1635931527.sql.gz .
+   80  ls
+   81  pg_restore -U bn_odoo s3_restored < backup-ssx-restored-coa-1635931527.sql.gz 
+   82  pg_restore -U bn_odoo -d s3_restored -f backup-ssx-restored-coa-1635931527.sql.gz 
+   83  pg_restore -U bn_odoo s3_restored < backup-ssx-restored-coa-1635931527.sql.gz 
+   84  pg_restore -U bn_odoo -d s3_restored < backup-ssx-restored-coa-1635931527.sql.gz 
+   85  clear
+   86  pg_restore -U bn_odoo s3_restored -f backup-ssx-restored-coa-1635931527.sql.gz 
+   87  pg_restore -U bn_odoo s3_b -f backup-ssx-restored-coa-1635931527.sql.gz s3_restored
+   88  pg_restore -U bn_odoo  s3-restored < backup-ssx-restored-coa-1635931527.sql.gz 
+   89  pg_restored   s3-restored < backup-ssx-restored-coa-1635931527.sql.gz 
+   90  pg_restore -d  s3-restored < backup-ssx-restored-coa-1635931527.sql.gz 
+   91  ls -l
+   92  pg_dump -U bn_odoo  -W -F t ssx-restored-coa > backup-ssx-restored-coa.sql.gz
+   93  pg_dump -U bn_odoo  -w -F t ssx-restored-coa > backup-ssx-restored-coa.sql.gz
+   94  ls
+   95  rm backup-ssx-restored-coa-1635931527.sql.gz 
+   96  ls
+   97  pg_restore -U bn_odoo s3-restored < backup-ssx-restored-coa.sql.gz 
+   98  pg_restore -d s3-restored < backup-ssx-restored-coa.sql.gz 
+   99  pg_restore -d s3-restored -w < backup-ssx-restored-coa.sql.gz 
+  100  pg_restore  --U bn_odoo d s3-restored -w < backup-ssx-restored-coa.sql.gz 
+  101  pg_restore  -U bn_odoo- d s3-restored -w < backup-ssx-restored-coa.sql.gz 
+  102  pg_restore  -U bn_odoo -d s3-restored -w < backup-ssx-restored-coa.sql.gz 
+  103  pg_restore -d db_name /path/to/your/file/dump_name.tar -c -U db_user
+  104  pg_restore -d db_name backup-ssx-restored-coa.sql.gz -c -U bn_odoo
+  105  pg_restore -c -d s3-restored < backup-ssx-restored-coa.sql.gz 
+  106  pg_restore -c -w -d s3-restored < backup-ssx-restored-coa.sql.gz 
+  107  pg_restore -c -w -d s3- -U bn_odoo restored < backup-ssx-restored-coa.sql.gz 
+  108  pg_restore -c -w -d s3- -U bn_odoo's3-restored' < backup-ssx-restored-coa.sql.gz 
+  109  pg_restore -c -w -d -U bn_odoo 's3-restored' < backup-ssx-restored-coa.sql.gz 
+  110  pg_restore -c -w  -U bn_odoo 's3-restored' < backup-ssx-restored-coa.sql.gz 
+  111  pg_restore -c -w  -U bn_odoo -d 's3-restored' < backup-ssx-restored-coa.sql.gz 
+  112  pg_restore  -w  -U bn_odoo -d -c 's3-restored' < backup-ssx-restored-coa.sql.gz 
+  113  ls -l
+  114  ls
+  115  cat /opt/bitnami/odoo/conf/odoo.conf 
+  116  nano postgres_backup.sh 
+  117  ./postgres_backup.sh 
+  118  nano postgres_backup.sh 
+  119  ./postgres_backup.sh 
+  120  nano postgres_backup.sh 
+  121  ./postgres_backup.sh 
+  122  nano postgres_backup.sh 
+  123  ./postgres_backup.sh 
+  124  nano postgres_backup.sh 
+  125  wget --post-data 'master_pweNWGiXA7Jd6vWD&namssx-restored-coaME&backup_format=zip' backup-test.zip http://localhost:8069/web/database/backup
+  126  wget --post-data 'master_pweNWGiXA7Jd6vWD&namssx-restored-coa&backup_format=zip' backup-test.zip http://localhost:8069/web/database/backup
+  127  wget --post-data 'master_pwd=eNWGiXA7Jd6vWD&name=ssx-restored-coa&backup_format=zip' -O backup-test.zip http://localhost:8069/web/database/backup
+  128  ls
+  129  ls -l
+  130  nano postgres_backup.sh 
+  131  ./postgres_backup.sh 
+  132  nano postgres_backup.sh 
+  133  ./postgres_backup.sh 
+  134  rm backup-ssx-restored-coa.sql.gz 
+  135  ls
+  136  ll
+  137  ls -l
+  138  tail -f /opt/bitnami/odoo/log/odoo-server.log 
+  139  nano postgres_backup.sh 
+  140  tail -f /opt/bitnami/odoo/log/odoo-server.log 
+  141  ./postgres_backup.sh 
+  142  ls
+  143  ls -l
+  144  nano postgres_backup.sh 
+  145  ./postgres_backup.sh 
+  146  nano postgres_backup.sh 
+  147  ./postgres_backup.sh 
+  148  nano postgres_backup.sh 
+  149  ./postgres_backup.sh 
+  150  nano postgres_backup.sh 
+  151  ./postgres_backup.sh 
+  152  ls -l
+  153  nano postgres_backup.sh 
+  154  ./postgres_backup.sh 
+  155  ls -l
+  156  nano postgres_backup.sh 
+  157  clear
+  158  exit
+  159  pip3 install paramiko
+  160  pip3 upgrade install
+  161  pip3 install upgrade
+  162  pip3 install --upgrade
+  163  pip3 install --upgrade pip
+  164  clear
+  165  exit
+  166  pip3 install dropbox
+  167  clear
+  168  clear
+  169  ls
+  170  rm backup-*
+  171  ls
+  172  mkdir odoo_backups
+  173  cd odoo_backups/
+  174  pwd
+  175  cd ..
+  176  ls -l
+  177  sudo chown odoo:odoo odoo_backups
+  178  clear
+  179  ls
+  180  ls -l
+  181  ls odoo_backups/
+  182  ls -l odoo_backups/
+  183  tail -f /opt/bitnami/odoo/log/odoo-server.log 
+  184  ls odoo_backups/
+  185  ls -l odoo_backups/
+  186  clear
+  187  ls -l odoo_backups/
+  188  ls odoo_backups/
+  189  exit
+  190  cd odoo
+  191  exit
+  192  cat /opt/bitnami/odoo/conf/odoo.conf 
+  193  ls odoo_backups/
+  194  ls -l odoo_backups/
+  195  clear
+  196  ls -l odoo_backups/
+  197  git status
+  198  exit
+  199  tail -f /opt/bitnami/odoo/log/odoo-server.log 
+  200  cat /etc/cron.d/.placeholder 
+  201  clear
+  202  ls -l odoo_backups/
+  203  time
+  204  datetime
+  205  ls -l odoo_backups/
+  206  ntp status
+  207  timedatectl
+  208  sudo apt install ntp
+  209  timedatectl set-ntp yes
+  210  sudo timedatectl set-ntp yes
+  211  timedatectl
+  212  sudo ntp --help
+  213  ntpq 
+  214  date
+  215  timedatectl list-timezones
+  216  date
+  217  timedatectl
+  218  sudo timedatectl set-ntp on
+  219  timedatectl
+  220  sudo ntpq -p
+  221  sudo reboot now
+  222  clear
+  223  timedatectl
+  224  sudo ntpq -p
+  225  sudo timedatectl set-ntp on
+  226  timedatectl
+  227  sudo timedatectl set-ntp no
+  228  timedatectl
+  229  sudo timedatectl set-ntp no
+  230  timedatectl
+  231  sudo apt-get install ntp
+  232  sudo ntpq -p
+  233  sudo apt-get update
+  234  sudo apt-get install ntp
+  235  sntp --version
+  236  sudo nano /etc/ntp.conf
+  237  sudo service ntp restart
+  238  sudo service ntp status
+  239  sudo ufw allow from any to any port 123 proto udp
+  240  exit
+  241  sudo apt-get install ntpdate
+  242  sudo service ntp restart
+  243  ntpq -ps
+  244  sudo service ntp status
+  245  timedatectl 
+  246  sudo timedatectl set-ntp yes
+  247  timedatectl 
+  248  sudo apt install ntpdate
+  249  ntpq -p
+  250  sudo ntpq -p
+  251  clear
+  252  systemctl status systemd-timesyncd
+  253  sudo apt install chrony
+  254  sudo nano /etc/chrony/chrony.conf
+  255  sudo systemctl restart chrony.service
+  256  chronyc sources
+  257  timedatectl 
+  258  sudo timedatectl set-ntp yes
+  259  timedatectl 
+  260  chronyc sourcestats
+  261  chronyc --help
+  262  chronyc -h ny-time.gofile.xyz
+  263  chronyc -h
+  264  timedatectl 
+  265  timedatectl list-timezones
+  266  timedatectl set-timezone America/New_York
+  267  sudo timedatectl set-timezone America/New_York
+  268  timedatectl 
+  269  sudo systemctl start ntpd.service
+  270  sudo systemctl start ntpd
+  271  clear
+  272  timedatectl set-ntp true
+  273  sudo timedatectl set-ntp true
+  274  timedatectl 
+  275  sudo systemctl restart systemd-timedated
+  276  timedatectl 
+  277  sudo systemctl restart systemd-timesyncd
+  278  systemctl status systemd-timesyncd
+  279  chronyc tracking
+  280  pgrep chronyd
+  281  systemctl status chronyd -l
+  282  strace chronyc tracking
+  283  sudo apt remove chrony 
+  284  timedatectl 
+  285  systemctl status systemd-timesyncd
+  286  sudo systemctl reset-failed systemd-timesyncd
+  287  systemctl status systemd-timesyncd
+  288  systemctl restart systemd-timesyncd.service 
+  289  sudo systemctl restart systemd-timesyncd.service 
+  290  systemctl status systemd-timesyncd
+  291  timedatectl 
+  292  ls odoo_backups/
+  293  ls -al odoo_backups/
+  294  rm odoo_backups/2021_11_0*
+  295  sudo rm -f odoo_backups/2021_11_0*
+  296  clear
+  297  ls -al odoo_backups/
+  298  ls -l odoo_backups/
+  299  git commit -am 'added backup app and configured'
+  300  exit
+  301  sudo nano /opt/bitnami/odoo/conf/odoo.conf 
+  302  sudo /opt/bitnami/ctlscript.sh 
+  303  sudo /opt/bitnami/ctlscript.sh restart
+  304  sudo /opt/bitnami/ctlscript.sh status
+  305  ls -l odoo_backups/
+  306  sudo apt-get install s3cmd
+  307  s3cmd --configure
+  308  clear
+  309  s3cmd sync odoo_backups/ https://ssx-postgres-backups.s3.amazonaws.com/poc-backups/
+  310  aws s3 ls
+  311  s3cmd sync odoo_backups https://ssx-postgres-backups.s3.amazonaws.com/poc-backups/
+  312  aws s3 ls
+  313  s3cmd sync odoo_backups s3://ssx-postgres-backups/poc-backups/
+  314  ls -l odoo_backups/
+  315  clear
+  316  tail -f /opt/bitnami/odoo/conf/odoo.conf 
+  317  tail -f /opt/bitnami/odoo/log/odoo-server.log 
+  318  ls -l odoo_backups/
+  319  s3cmd sync odoo_backups s3://ssx-postgres-backups/poc-backups/
+  320  crontab -e
+  321  ls -l odoo_backups/
+  322  tail -f /opt/bitnami/odoo/log/odoo-server.log 
+  323  ls -l odoo_backups/
+  324  sudo systemctl status cron
+  325  crontab -e
+  326  sudo systemctl status cron
+  327  sudo systemctl restart cron
+  328  sudo systemctl status cron
+  329  time
+  330  timedatectl 
+  331  exit
+  332  clear
+  333  tail -f /opt/bitnami/odoo/log/odoo-server.log 
+  334  history > history.txt
