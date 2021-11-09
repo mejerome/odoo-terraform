@@ -59,7 +59,7 @@ resource "aws_security_group" "ntpd_sg" {
     from_port   = 123
     to_port     = 123
     protocol    = "udp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["169.254.169.123/32"]
   }
 
   egress {
@@ -69,3 +69,21 @@ resource "aws_security_group" "ntpd_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+# resource "aws_security_group" "postgres_sg" {
+#   name = "allow_postgres"
+#   vpc_id = aws_vpc.ssx_vpc.id
+#   ingress {
+#     from_port   = 5432
+#     to_port     = 5432
+#     protocol    = "tcp"
+#     cidr_blocks = [aws_vpc.ssx_vpc.cidr_block]
+#   }
+
+#   egress {
+#     from_port   = 0
+#     to_port     = 0
+#     protocol    = "-1"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+# }

@@ -1,4 +1,4 @@
 ---
 roles:
-  - name: geerlingguy.postgresql
+  - name: geerlingguy.ntp
   # - name: geerlingguy.nodejs

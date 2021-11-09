@@ -4,21 +4,26 @@
 
   vars:
     ntp_enabled: true
-    ntp_timezone: America/New_York
+    ntp_timezone: Africa/Accra
 
   roles:
     - geerlingguy.ntp
 
   tasks:
-    - name: "Replace line in file examples"
+    - name: Create odoo_backup directory
+      file:
+        path: /home/bitnami/odoo_backup
+        state: directory
+
+    - name: Add custom_addons as addons_path to odoo.conf
       replace: 
         path: /opt/bitnami/odoo/conf/odoo.conf
         regexp: '/opt/bitnami/odoo/addons'
         replace: '/opt/bitnami/odoo/addons,/home/bitnami/custom_addons'
         backup: yes
 
-    - name: "Restart all odoo related services"
-      shell: "/opt/bitnami/ctlscript.sh restart"
-
-    - name: "Install necessary python libraries"
+    - name: Install necessary python libraries
       shell: "pip3 install --upgrade pip; pip3 install paramiko dropbox"
+
+    - name: Restart all odoo related services
+      shell: "/opt/bitnami/ctlscript.sh restart"

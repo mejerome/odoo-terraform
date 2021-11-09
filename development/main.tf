@@ -1,11 +1,16 @@
 provider "aws" {
   profile = "default"
-  region  = "us-east-1"
+  region  = var.region
 }
 
 resource "aws_network_interface" "odoo_nic" {
   subnet_id   = aws_subnet.public_sub.id
-  security_groups = [aws_security_group.ssh_sg.id, aws_security_group.odoo_sg.id, aws_security_group.https_sg.id]
+  security_groups = [
+    aws_security_group.ssh_sg.id, 
+    aws_security_group.odoo_sg.id, 
+    aws_security_group.https_sg.id,
+    aws_security_group.ntpd_sg.id,
+    ]
 
   tags = {
     Name = "primary_network_interface"
@@ -23,16 +28,24 @@ resource "aws_instance" "odoo" {
   }
 
   provisioner "file" {
-    source      = "../lightsail/custom_addons"
+    source      = "../custom_addons"
     destination = "~/custom_addons"
   }
+
+  provisioner "remote-exec" {
+    inline = ["sudo apt update", "sudo apt install python3 -y"]
+  }
+  
   connection {
     type     = "ssh"
     user     = "bitnami"
-    private_key = "${file("../../odoo-key.pem")}"
+    private_key = "${file(var.key_file)}"
     host    = self.public_ip
   }
 
+  provisioner "local-exec" {
+        command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u bitnami --private-key ${var.key_file} -i '${self.public_ip},' ../playbook/bitnami_prep.yml"
+    }
   tags = {
     Name = "Odoo-Server"
   }
