@@ -6,12 +6,16 @@ variable "region" {
   default = "eu-central-1"
 }
 
-variable "availability_zone1" {
+variable "web_availability_zone" {
   default = "eu-central-1a"
 }
 
-variable "availability_zone2" {
+variable "app_availability_zone_1" {
   default = "eu-central-1b"
+}
+
+variable "app_availability_zone_2" {
+  default = "eu-central-1c"
 }
 
 variable "odoo_ami" {

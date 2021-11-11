@@ -1,6 +1,6 @@
 resource "aws_security_group" "ssh_sg" {
-  name = "allow_ssh"
-  vpc_id = aws_vpc.ssx_vpc.id
+  name   = "allow_ssh"
+  vpc_id = aws_vpc.ssx-vpc.id
   ingress {
     from_port   = 22
     to_port     = 22
@@ -17,8 +17,8 @@ resource "aws_security_group" "ssh_sg" {
 }
 
 resource "aws_security_group" "odoo_sg" {
-  name = "allow_odoo"
-  vpc_id = aws_vpc.ssx_vpc.id
+  name   = "allow_odoo"
+  vpc_id = aws_vpc.ssx-vpc.id
   ingress {
     from_port   = 80
     to_port     = 80
@@ -35,8 +35,8 @@ resource "aws_security_group" "odoo_sg" {
 }
 
 resource "aws_security_group" "https_sg" {
-  name = "allow_https"
-  vpc_id = aws_vpc.ssx_vpc.id
+  name   = "allow_https"
+  vpc_id = aws_vpc.ssx-vpc.id
   ingress {
     from_port   = 443
     to_port     = 443
@@ -53,8 +53,8 @@ resource "aws_security_group" "https_sg" {
 }
 
 resource "aws_security_group" "ntpd_sg" {
-  name = "allow_ntpd"
-  vpc_id = aws_vpc.ssx_vpc.id
+  name   = "allow_ntpd"
+  vpc_id = aws_vpc.ssx-vpc.id
   ingress {
     from_port   = 123
     to_port     = 123
