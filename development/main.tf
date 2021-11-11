@@ -33,7 +33,11 @@ resource "aws_instance" "odoo" {
   }
 
   provisioner "remote-exec" {
-    inline = ["sudo apt update", "sudo apt install python3 -y"]
+    inline = [
+      "sudo apt update", 
+      "sudo apt install python3 -y", 
+      "sudo apt install ansible -y",
+      ]
   }
 
   connection {
@@ -43,13 +47,10 @@ resource "aws_instance" "odoo" {
     host        = self.public_ip
   }
 
-    provisioner "remote-exec" {
-    inline = ["sudo apt update", "sudo apt install python3 -y", "sudo apt install ansible"]
+  provisioner "local-exec" {
+    command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u bitnami --private-key ${var.key_file} -i '${self.public_ip},' ../playbook/bitnami_prep.yml"
   }
 
-  provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u bitnami --private-key ${var.key_file} -i '${self.public_ip},' ../playbook/bitnami_prep.yml"
-  }
   tags = {
     Name = "Odoo-Server"
   }

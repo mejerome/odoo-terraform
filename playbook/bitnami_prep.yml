@@ -2,19 +2,13 @@
 - hosts: all
   become: yes
 
-  vars:
-    ntp_enabled: true
-    ntp_timezone: Africa/Accra
-
-  roles:
-    - geerlingguy.ntp
 
   tasks:
     - name: Create odoo_backup directory
       file:
         path: /home/bitnami/odoo_backup
         state: directory
-        owner: odoo
+        owner: bitnami
         group: odoo
         mode: 0775
 
@@ -43,6 +37,19 @@
 
     - name: Restart all odoo related services
       shell: "/opt/bitnami/ctlscript.sh restart"
+
+    - name: Stop and disable timesyncd
+      shell: "systemctl stop systemd-timesyncd; systemctl disable systemd-timesyncd"
+
+    - name: Ensure chrony is present
+      apt:  name=chrony state=present
+
+    - name: Edit crony conf file
+      shell: "sed -i '1s/^/server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4\n/' /etc/chrony/chrony.conf"
+
+    - name: Restart chrony
+      shell: "/etc/init.d/chrony restart"
+      
 
     - name: Set S3 backup cronjob
       cron:
