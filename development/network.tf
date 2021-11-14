@@ -8,7 +8,6 @@ resource "aws_vpc" "ssx-vpc" {
   }
 }
 
-
 resource "aws_subnet" "web-subnet" {
   vpc_id                  = aws_vpc.ssx-vpc.id
   cidr_block              = var.public_subnet_cidr
