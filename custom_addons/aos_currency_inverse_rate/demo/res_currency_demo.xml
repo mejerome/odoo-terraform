@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- The Following currency rates are considered as on 1st Jan,2010 against EUR. -->
+        <record forcecreate="0" id="base.rateUSD" model="res.currency.rate">
+            <field name="rate">10000</field>
+            <field name="currency_id" ref="base.USD"/>
+            <field name="name">2010-01-01</field>
+        </record>
+        
+        <record forcecreate="0" id="base.rateEUR" model="res.currency.rate">
+            <field name="currency_id" ref="base.EUR" />
+            <field name="name">2010-01-01</field>
+            <field name="rate">15000</field>
+        </record>
+
+        <record id="base.rateUSDbis" model="res.currency.rate">
+            <field name="rate">11000</field>
+            <field name="currency_id" ref="base.USD"/>
+            <field eval="time.strftime('%Y-01-01')" name="name"/>
+        </record>
+
+        <delete model="res.currency.rate" id="base.rateIDR1"/>
+
+        <record forcecreate="0" id="base.rateIDR" model="res.currency.rate">
+            <field name="rate">1</field>
+        </record>
+
+    </data>
+</odoo>
