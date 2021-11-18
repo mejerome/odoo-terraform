@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     odoo.vm.hostname = "bitnami-odoo.local"
     odoo.vm.network "public_network", bridge: "wlp1s0"
     odoo.vm.provision "ansible_local" do |ansible|
-      ansible.playbook = "playbook/bitnami_prep.yml"    
+      ansible.playbook = "playbook/bitnami_prep_local.yml"    
     end
   end
 end
