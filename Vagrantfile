@@ -2,7 +2,6 @@
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
   config.vm.box = "jerome-bitnami-odoo"
-  config.ssh.insert_key = false
   config.ssh.username = "bitnami"
   config.ssh.private_key_path = "../odoo-key-local.pem"
   config.vm.synced_folder ".", "/vagrant"

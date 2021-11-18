@@ -5,13 +5,12 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3
 
-
   tasks:
     - name: Add custom_addons as addons_path to odoo.conf
-      replace:
+      lineinfile:
         path: /opt/bitnami/odoo/conf/odoo.conf
-        regexp: 'addons_path = /opt/bitnami/odoo/addons '
-        replace: 'addons_path = /opt/bitnami/odoo/addons,/vagrant/custom_addons'
+        regexp: '^addons_path'
+        line: 'addons_path = /opt/bitnami/odoo/addons,/vagrant/custom_addons'
         backup: yes
 
     - name: Install bottle python package
@@ -21,16 +20,19 @@
           - dropbox
         extra_args: --upgrade
 
-    - name: Restart all odoo related services
+    - name: Replace a listen_addresses entry in postgresql.conf
+      lineinfile:
+        path: /opt/bitnami/postgresql/conf/postgresql.conf
+        regex: '^listen_addresses'
+        line: listen_addresses = '*'
+
+    - name: Add pg_hba.conf entry for remote access
+      lineinfile:
+        path: /opt/bitnami/postgresql/conf/pg_hba.conf
+        regexp: '^'
+        line: 'host all all 10.51.1.0/24 md5'
+
+    - name: Restart all services
       shell: "/opt/bitnami/ctlscript.sh restart"
-
-    - name: Stop and disable timesyncd
-      shell: "systemctl stop systemd-timesyncd; systemctl disable systemd-timesyncd"
-
-    - name: Ensure chrony is present
-      apt:  name=chrony state=present
-
-    - name: Restart chrony
-      shell: "/etc/init.d/chrony restart"
 
     - debug: var=ansible_enp0s8.ipv4.address
