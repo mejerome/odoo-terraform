@@ -5,7 +5,7 @@
 *.tfstate
 *.tfstate.*
 # custom_addons/
-
+*.pyc
 # Crash log files
 crash.log
 

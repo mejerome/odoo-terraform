@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+		<record id="res_config_settings_view_klikapi_form" model="ir.ui.view">
+		    <field name="name">res.config.settings.view.form</field>
+		    <field name="model">res.config.settings</field>
+		    <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+		    <field name="arch" type="xml">
+		        <div class="app_settings_block" position="after">
+                    <h2 id="web_theme_title">OAuth KlikAPI Gateway</h2>
+	            	<div class="row mt16 o_settings_container" name="gateway">
+		            	<div class="col-12 col-lg-6 o_setting_box">
+		                    <div class="o_setting_left_pane">
+		                    </div>
+		                    <div class="o_setting_right_pane">
+		                        <span class="o_form_label">Key &amp; Secret Gateway</span>
+	                            <div class="text-muted">
+	                                Set Key &amp; Secret for Server Gateway
+	                            </div>
+	                            <div class="content-group">
+	                                <div class="mt16 row">
+	                                	<label for="server_client_id" string="Key" class="col-3 o_light_label"/>
+	                                    <field name="server_client_id" class="col-5"/>
+	                                    <div class="w-100"></div>
+	                                	<label for="server_secret_key" string="Secret" class="col-3 o_light_label"/>
+	                                    <field name="server_secret_key" class="col-5"/>
+	                                </div>
+	                            </div>
+		                    </div>
+		                </div>
+		                <div class="col-12 col-lg-6 o_setting_box">
+		                    <div class="o_setting_left_pane">
+		                    </div>
+		                    <div class="o_setting_right_pane">
+		                        <span class="o_form_label">Server Gateway</span>
+	                            <div class="text-muted">
+	                                Set URL Server Gateway https://klikodoo.id
+	                            </div>
+	                            <div class="text-muted content-group mt16">
+	                                <field name="server_gateway" class="oe_inline" />
+	                            </div>
+		                    </div>
+		                </div>
+		            </div>
+	        	</div>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -2,6 +2,8 @@
 - hosts: all
   become: yes
 
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
     - name: Create odoo_backup directory
@@ -26,10 +28,10 @@
         dest: /home/bitnami/.aws/credentials
 
     - name: Add custom_addons as addons_path to odoo.conf
-      replace:
+      fileinline:
         path: /opt/bitnami/odoo/conf/odoo.conf
-        regexp: 'addons_path = /opt/bitnami/odoo/addons'
-        replace: 'addons_path = /opt/bitnami/odoo/addons,/home/bitnami/custom_addons'
+        regexp: '^addons_path'
+        line: 'addons_path = /opt/bitnami/odoo/addons,/home/bitnami/custom_addons'
         backup: yes
 
     - name: Install necessary python libraries
