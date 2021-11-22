@@ -6,19 +6,38 @@
     ansible_python_interpreter: /usr/bin/python3
 
   tasks:
+    - name: Check if custom_addons directory exists
+      stat:
+        path: /opt/bitnami/odoo/custom_addons
+      register: custom_addons
+
+    - name: Ensure custom_addons directory is present
+      copy:
+        src: ../custom_addons/
+        dest: /opt/bitnami/odoo/custom_addons
+        group: odoo
+      when: not custom_addons.stat.exists
+      
     - name: Add custom_addons as addons_path to odoo.conf
       lineinfile:
         path: /opt/bitnami/odoo/conf/odoo.conf
         regexp: '^addons_path'
-        line: 'addons_path = /opt/bitnami/odoo/addons,/vagrant/custom_addons'
+        line: 'addons_path = /opt/bitnami/odoo/addons,/opt/bitnami/odoo/custom_addons'
         backup: yes
 
-    - name: Install bottle python package
-      pip:
+    - name: Install wkhtmltopdf dependencies
+      apt: 
         name:
-          - paramiko
-          - dropbox
-        extra_args: --upgrade
+          - zlib1g
+          - fontconfig
+          - libxrender1
+          - libfreetype6 
+          - libxext6
+          - libx11-6
+        state: latest  
+
+    - name: Install bottle python package
+      shell: "pip install --upgrade pip && pip install paramiko dropbox"
 
     - name: Replace a listen_addresses entry in postgresql.conf
       lineinfile:
@@ -32,6 +51,14 @@
         regexp: '^'
         line: 'host all all 10.51.1.0/24 md5'
 
+    - name: Grab wkhtmltopdf binary
+      get_url:
+        url: https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.buster_amd64.deb
+        dest: /tmp/wkhtmltox.deb
+
+    - name: Install wkhtmltopdf
+      shell: apt install -y /tmp/wkhtmltox.deb
+        
     - name: Restart all services
       shell: "/opt/bitnami/ctlscript.sh restart"
 
