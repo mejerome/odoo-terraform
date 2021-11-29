@@ -1,0 +1,39 @@
+<odoo>
+<data>
+	
+		<record id="view_currency_rate_live_search_aos_base" model="ir.ui.view">
+	        <field name="name">res.currency.rate.search</field>
+	        <field name="model">res.currency.rate</field>
+		    <field name="inherit_id" ref="base.view_currency_rate_search"/>
+		    <field name="arch" type="xml">
+		        <field name="name" position="after">
+	                <field name="currency_id_provider"/>
+		        </field>
+		    </field>
+		</record>
+		
+		<record id="view_currency_rate_live_form_aos_base" model="ir.ui.view">
+	        <field name="name">res.currency.rate.live.form</field>
+	        <field name="model">res.currency.rate</field>
+		    <field name="inherit_id" ref="base.view_currency_rate_form"/>
+		    <field name="arch" type="xml">
+		        <field name="rate" position="after">
+	                <field name="currency_id_provider"/>
+		        </field>
+		    </field>
+		</record>
+		
+		<record id="view_currency_rate_live_tree_aos_base" model="ir.ui.view">
+	        <field name="name">res.currency.rate.live.tree</field>
+	        <field name="model">res.currency.rate</field>
+		    <field name="inherit_id" ref="base.view_currency_rate_tree"/>
+		    <field name="arch" type="xml">
+		        <field name="rate" position="after">
+	                <field name="currency_id_provider"/>
+		        </field>
+		    </field>
+		</record>
+	
+    </data>
+</odoo>
+

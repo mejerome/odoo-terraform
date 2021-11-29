@@ -1,0 +1,92 @@
+<odoo>
+<data>
+        <record id="view_company_form_inverse" model="ir.ui.view">
+            <field name="name">res.company.form</field>
+            <field name="model">res.company</field>
+		    <field name="inherit_id" ref="base.view_company_form"/>
+		    <field name="arch" type="xml">
+		        <field name="currency_id" position="after">
+	                <field name="currency_convert_method"/>
+		        </field>
+		    </field>
+		</record>
+		
+        <record model="ir.ui.view" id="view_sale_order_graph">
+	        <field name="name">res.currency.rate.graph</field>
+	        <field name="model">res.currency.rate</field>
+            <field name="arch" type="xml">
+                <graph string="Currency Rates">
+                    <field name="currency_id"/>
+                    <field name="rate" type="measure"/>
+                </graph>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_sale_order_pivot">
+	        <field name="name">res.currency.rate.pivot</field>
+	        <field name="model">res.currency.rate</field>
+            <field name="arch" type="xml">
+                <pivot string="Currency Rates">
+                    <field name="name" type="row"/>
+                    <field name="rate" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+	
+		<record id="view_currency_rate_search_aos_base" model="ir.ui.view">
+	        <field name="name">res.currency.rate.search</field>
+	        <field name="model">res.currency.rate</field>
+		    <field name="inherit_id" ref="base.view_currency_rate_search"/>
+		    <field name="arch" type="xml">
+		        <field name="name" position="after">
+	                <field name="currency_id"/>
+	                <field name="kmk_number"/>
+	                <field name="kmk_date"/>
+	                <group expand="0" string="Group By">
+                        <filter name="name" string="Date" domain="[]" context="{'group_by':'name'}"/>
+                        <filter name="currency" string="Currency" domain="[]" context="{'group_by':'currency_id'}"/>
+                        <filter name="kmk_number" string="KMK Number" domain="[]" context="{'group_by':'kmk_number'}"/>
+                        <filter name="kmk_date" string="KMK Date" domain="[]" context="{'group_by':'kmk_date'}"/>
+                    </group>
+		        </field>
+		    </field>
+		</record>
+		<record id="view_currency_rate_form_aos_base" model="ir.ui.view">
+	        <field name="name">res.currency.rate.form</field>
+	        <field name="model">res.currency.rate</field>
+		    <field name="inherit_id" ref="base.view_currency_rate_form"/>
+		    <field name="arch" type="xml">
+		        <field name="rate" position="after">
+	                <field name="kmk_date"/>
+	                <field name="kmk_number"/>
+		        </field>
+		    </field>
+		</record>
+		
+		<record id="view_currency_rate_tree_aos_base" model="ir.ui.view">
+	        <field name="name">res.currency.rate.tree</field>
+	        <field name="model">res.currency.rate</field>
+		    <field name="inherit_id" ref="base.view_currency_rate_tree"/>
+		    <field name="arch" type="xml">
+		        <field name="name" position="after">
+	                <field name="currency_id"/>
+		        </field>
+		        <field name="rate" position="after">
+	                <field name="kmk_date"/>
+	                <field name="kmk_number"/>
+		        </field>
+		    </field>
+		</record>
+		
+		<record id="action_rate_currency_form" model="ir.actions.act_window">
+            <field name="name">Currency Rates</field>
+            <field name="res_model">res.currency.rate</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="search_view_id" ref="base.view_currency_rate_search"/>
+            <field name="context">{'search_default_currency': 1}</field>
+            <field name="domain">[('currency_id.active','=',True)]</field>
+        </record>
+	
+	
+    </data>
+</odoo>
+
