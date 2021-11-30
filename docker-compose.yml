@@ -1,31 +1,33 @@
-version: '2'
+version: '3.1'
 services:
-  postgresql:
-    image: docker.io/bitnami/postgresql:13
-    volumes:
-      - 'postgresql_data:/bitnami/postgresql'
-    environment:
-      # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes
-      - POSTGRESQL_USERNAME=bn_odoo
-      - POSTGRESQL_DATABASE=bitnami_odoo
-  odoo:
-    image: docker.io/bitnami/odoo:15
-    ports:
-      - '80:8069'
-    volumes:
-      - 'odoo_data:/bitnami/odoo'
+  web:
+    image: odoo:15.0
     depends_on:
-      - postgresql
+      - mydb
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./custom_addons:/mnt/extra-addons
     environment:
-      # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes
-      - ODOO_DATABASE_HOST=postgresql
-      - ODOO_DATABASE_PORT_NUMBER=5432
-      - ODOO_DATABASE_USER=bn_odoo
-      - ODOO_DATABASE_NAME=bitnami_odoo
+    - HOST=mydb
+    - USER=odoo
+    - PASSWORD=mysecretpassword
+  mydb:
+    image: postgres:12
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=mysecretpassword
+      - PGDATA=/var/lib/postgresql/data/pgdata
+
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+   
 volumes:
-  postgresql_data:
-    driver: local
-  odoo_data:
-    driver: local
+  odoo-web-data:
+  odoo-db-data:

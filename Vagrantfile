@@ -1,10 +1,12 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
-  config.vm.box = "jerome-bitnami-odoo"
+  config.vm.box = "jerome-bn-odoo"
   config.ssh.username = "bitnami"
-  config.ssh.private_key_path = "../odoo-key-local.pem"
-  config.vm.synced_folder ".", "/vagrant"
+  config.ssh.password = "bitnami"
+  # config.ssh.insert_key = true
+  # config.ssh.private_key_path = "../odoo-key-local.pem"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 4096
     vb.cpus = 2
@@ -15,7 +17,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "odoo" do |odoo|
     odoo.vm.hostname = "bitnami-odoo.local"
     odoo.vm.network "public_network", bridge: "wlp1s0"
-    odoo.vm.provision "ansible_local" do |ansible|
+    odoo.vm.provision "ansible" do |ansible|
       ansible.playbook = "playbook/bitnami_prep_local.yml"    
     end
   end

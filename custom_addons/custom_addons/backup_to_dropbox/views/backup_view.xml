@@ -1,0 +1,77 @@
+<odoo>
+    <data>
+        <record id="view_backup_config_form" model="ir.ui.view">
+            <field name="name">db.backup.form</field>
+            <field name="model">db.backup</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Back-up view">
+                    <header>
+                        <button name="schedule_backup" string="Backup Now" type="object" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Backup configuration">
+                                <field name="host"/>
+                                <field name="name"/>
+                                <field name="port"/>
+                                <field name="backup_type"/>
+                            </group>
+                            <group string="Auto Removal">
+                                <field name="autoremove" string="Enable"/>
+                                <field name="days_to_keep" attrs="{'invisible': [('autoremove','=',False)]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Local backup">
+                                <field name="folder"/>
+                            </group>
+                            <group string="DropBox backup">
+                                <field name="upload_dropbox" string="Enable"/>
+                                <field name="access_token" attrs="{'required': [('upload_dropbox', '=', True)], 'invisible': [('upload_dropbox','=',False)]}"/>
+                                <field name="dropbox_folder" attrs="{'required': [('upload_dropbox', '=', True)], 'invisible': [('upload_dropbox','=',False)]}"/>
+                            </group>
+                        </group>
+                        <group string="Error Notification" style="width:50%;">
+                            <field name="email_notification" string="Enable"/>
+                            <field name="email" attrs="{'required': [('email_notification', '=', True)], 'invisible': [('email_notification','=',False)]}"/>
+                        </group>
+
+                        <separator string="Help"/>
+                        <div>
+                            <p style="font-size:18px;color:red;">
+                                Need more help?
+                                <a href="mailto:fasilwdr@hotmail.com">Contact me!</a>
+                            </p>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_backup_config_tree" model="ir.ui.view">
+            <field name="name">db.backup.tree</field>
+            <field name="model">db.backup</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Backups">
+                    <field name='host'/>
+                    <field name='port'/>
+                    <field name='name'/>
+                    <field name='folder'/>
+                    <field name="autoremove"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_backup" model="ir.actions.act_window">
+            <field name="name">Configure back-ups</field>
+            <field name="res_model">db.backup</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_backup_config_tree"/>
+        </record>
+
+        <menuitem id="auto_backup_menu" name="Back-ups" parent="base.menu_custom"/>
+        <menuitem parent="auto_backup_menu" action="action_backup" id="backup_conf_menu"/>
+    </data>
+</odoo>
