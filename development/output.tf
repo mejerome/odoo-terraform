@@ -13,7 +13,7 @@ output "odoo_url" {
   value       = aws_route53_record.ssxodoo.name
 }
 
-# output "odoo_db_url" {
-#   description = "Odoo DB URL"
-#   value = aws_db_instance.odoo_db.endpoint
-# }
+output "odoo_db_url" {
+  description = "Odoo DB URL"
+  value = aws_db_instance.odoo_db.endpoint
+}
