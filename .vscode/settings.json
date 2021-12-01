@@ -2,13 +2,13 @@
   "sqltools.connections": [
     {
       "previewLimit": 50,
-      "server": "localhost",
+      "server": "192.168.56.12",
       "port": 5432,
       "driver": "PostgreSQL",
-      "database": "ssx-poc-restored",
+      "name": "local_pg",
+      "database": "odoo_base",
       "username": "odoo",
-      "password": "mysecretpassword",
-      "name": "pg_docker"
+      "password": "odoo"
     }
   ]
 }

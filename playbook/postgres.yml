@@ -1,0 +1,76 @@
+---
+- hosts: postgres
+  become: yes
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Update and upgrade packages
+      apt:
+        name:
+          - bash
+          - acl
+          - openssl
+          - libssl-dev
+          - libssl-doc
+        state: latest
+        update_cache: true
+
+    - name: Install PostgreSQL
+      apt:
+        name:
+          - postgresql
+          - postgresql-contrib
+          - libpq-dev
+          - python3-psycopg2
+        state: latest
+
+    - name: Create odoo_base database
+      become: yes
+      become_user: postgres
+      postgresql_db:
+        name: '{{ odoo_default_db }}'
+        template: template0
+        encoding: UTF8
+        state: present
+
+    - name: Create odoo user and grant all privileges
+      become: yes
+      become_user: postgres
+      postgresql_user:
+        name: '{{ odoo_user_db }}'
+        password: '{{ odoo_password_db }}'
+        db: '{{ odoo_default_db }}'
+        state: present
+        role_attr_flags: CREATEDB,NOSUPERUSER
+      notify:
+        - restart postgres
+
+    - name: "Allow md5 connection for the db user"
+      postgresql_pg_hba:
+        dest: "/etc/postgresql/12/main/pg_hba.conf"
+        contype: host
+        databases: all
+        address: '{{ db_allowed_networks }}'
+        method: md5
+        users: "{{ odoo_user_db }}"
+        create: true
+      become: yes
+      become_user: postgres
+      
+    - name: Edit postgresql.conf
+      lineinfile:
+        path: "/etc/postgresql/12/main/postgresql.conf"
+        regexp: "^#?listen_addresses"
+        line: "listen_addresses = '*'"
+        create: yes
+      notify: restart postgres
+
+    
+  handlers:
+    - name: restart postgres
+      service:
+        name: postgresql
+        state: restarted
+        enabled: yes
