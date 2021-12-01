@@ -2,8 +2,8 @@ version: '3.1'
 services:
   web:
     image: odoo:15.0
-    depends_on:
-      - mydb
+    # depends_on:
+    #   - mydb
     ports:
       - "8069:8069"
     volumes:
@@ -11,9 +11,9 @@ services:
       - ./config:/etc/odoo
       - ./custom_addons:/mnt/extra-addons
     environment:
-    - HOST=mydb
+    - HOST=192.168.56.12
     - USER=odoo
-    - PASSWORD=mysecretpassword
+    - PASSWORD=odoo
   # mydb:
   #   image: postgres:12
   #   restart: unless-stopped
@@ -30,5 +30,5 @@ services:
    
 volumes:
   odoo-web-data:
-  odoo-db-data:
+  # odoo-db-data:
     
