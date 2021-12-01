@@ -10,10 +10,10 @@ services:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./custom_addons:/mnt/extra-addons
-    environment:
-    - HOST=192.168.56.12
-    - USER=odoo
-    - PASSWORD=odoo
+    # environment:
+    # - HOST=192.168.56.12
+    # - USER=odoo
+    # - PASSWORD=odoo
   # mydb:
   #   image: postgres:12
   #   restart: unless-stopped

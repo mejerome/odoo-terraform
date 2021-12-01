@@ -8,34 +8,3 @@ odoo_password_db: odoo
 odoo_default_db: odoo_base
 admin_passwd: password
 db_allowed_networks: 192.168.56.0/24
-
-home_dir: ~/
-
-ansible_python_interpreter: /usr/bin/python3
-firewall_flush_rules_and_chains: true
-firewall_state: started
-postgresql_restarted_state: "restarted"
-firewall_enabled_at_boot: true
-firewall_allowed_tcp_ports:
-  - "22"
-  - "5432"
-postgresql_service_state: started
-postgresql_service_enabled: true
-postgres_users_no_log: false
-postgresql_global_config_options:
-  - option: listen_addresses
-    value: "*"
-
-postgresql_users:
-  - name: "{{ odoo_user_db }}" #required; the rest are optional
-    password: "{{ odoo_password_db }}" # defaults to not set
-    priv: ALL # defaults to not set
-    state: present # defaults to 'present'
-    db: postgres
-    role_attr_flags: CREATEDB,NOSUPERUSER
-
-postgresql_hba_entries:
-  - { type: local, database: all, user: postgres, auth_method: peer }
-  - { type: local, database: all, user: all, auth_method: peer }
-  - { type: host, database: all, user: all, address: '0.0.0.0/0', auth_method: trust }
-  # - { type: host, database: all, user: all, address: '::1/128', auth_method: md5 }
