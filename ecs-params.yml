@@ -1,0 +1,18 @@
+version: 1
+task_definition:
+  services:
+    web:
+      cpu_shares: 100
+      mem_limit: 28000000
+
+    mydb:
+      cpu_shares: 100
+      mem_limit: 28000000
+      
+  docker_volumes:
+    - name: odoo-web-data
+      scope: "shared"
+      autoprovision: true
+    - name: odoo-db-data
+      scope: "shared"
+      autoprovision: true
