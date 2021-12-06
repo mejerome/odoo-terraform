@@ -17,8 +17,8 @@ Vagrant.configure("2") do |config|
   config.vm.define "postgres" do |odoo|
     odoo.vm.hostname = "postgres.local"
     odoo.vm.network "private_network", ip: "192.168.56.12"
-    # odoo.vm.provision "ansible" do |ansible|
-    #   ansible.playbook = "playbook/postgres.yml"    
-    # end
+    odoo.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook/postgres.yml"    
+    end
   end
 end

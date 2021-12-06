@@ -1,3 +1,2 @@
-FROM odoo:15.0
-COPY ./custom_addons /opt/custom_addons
-COPY ./config/odoo.conf /etc/odoo/odoo.conf
+FROM bitnami/odoo:15
+COPY ./custom_addons /mnt/extra-addons

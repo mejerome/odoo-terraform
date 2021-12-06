@@ -2,11 +2,11 @@ version: 1
 task_definition:
   services:
     web:
-      cpu_shares: 100
+      essential: true
       mem_limit: 28000000
 
     mydb:
-      cpu_shares: 100
+      essential: true
       mem_limit: 28000000
       
   docker_volumes:

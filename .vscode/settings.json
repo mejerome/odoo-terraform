@@ -9,6 +9,16 @@
       "database": "odoo_base",
       "username": "odoo",
       "password": "odoo"
+    },
+    {
+      "previewLimit": 50,
+      "server": "ssx-odoo-db.sysloggh.com",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "rds-postgres",
+      "database": "odoo_db",
+      "username": "odoo",
+      "password": "secretpassword"
     }
   ]
 }

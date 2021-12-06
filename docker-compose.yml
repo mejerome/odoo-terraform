@@ -1,4 +1,12 @@
 version: '3.1'
+
+networks:
+  ssx_network:
+
+volumes:
+  ssx-db-data:
+  odoo-web-data:
+
 services:
   web:
     image: odoo:15.0
@@ -6,29 +14,24 @@ services:
       - mydb
     ports:
       - "8069:8069"
-    volumes:
-      # - odoo-web-data:/var/lib/odoo
-      - ./config:/etc/odoo
-      - ./custom_addons:/mnt/extra-addons
     environment:
     - HOST=mydb
     - USER=odoo
-    - PASSWORD=mysecretpassword
+    - PASSWORD=myodoo
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./custom_addons:/mnt/extra-addons
+      - ./config:/etc/odoo
+    networks:
+      - ssx_network
   mydb:
     image: postgres:13
-    # restart: unless-stopped
     environment:
       - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=myodoo
       - POSTGRES_USER=odoo
-      - POSTGRES_PASSWORD=mysecretpassword
-      - PGDATA=/var/lib/postgresql/data/pgdata
-
+      - PGDATA=/var/lib/postgresql/data
     volumes:
-      - odoo-db-data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-   
-volumes:
-#   odoo-web-data:
-  odoo-db-data:
-    
+      - ssx-db-data:/var/lib/postgresql/data
+    networks:
+      - ssx_network

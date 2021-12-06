@@ -4,7 +4,7 @@ odoo_dir: /opt/odoo
 odoo_version: 15.0
 odoo_repo: https://github.com/odoo/odoo
 odoo_user_db: odoo
-odoo_password_db: odoo
+odoo_password_db: secretpassword
 odoo_default_db: odoo_base
 admin_passwd: password
-db_allowed_networks: 192.168.56.0/24
+db_allowed_networks: 0.0.0.0/0

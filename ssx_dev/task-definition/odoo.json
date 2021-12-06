@@ -1,0 +1,19 @@
+[
+  {
+    "name": "odoo",
+    "image": "docker.io/bitnami/odoo:15",
+    "ports": [
+      "8069:8069"
+    ],
+    "essential": true,
+    "cpu": "512",
+    "memory": "2048"
+  },
+  {
+    "name": "db",
+    "image": "docker.io/bitnami/postgresql:13",
+    "ports": [
+      "5432:5432"
+    ]
+  }
+]
