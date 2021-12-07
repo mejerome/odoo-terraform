@@ -62,3 +62,7 @@ variable "private_subnets" {
 variable "availability_zones" {
   description = "List of availability zones"
 }
+
+variable "cloudwatch_group" {
+  description = "CloudWatch Log Group"
+}

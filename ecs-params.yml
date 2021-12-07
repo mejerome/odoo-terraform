@@ -1,18 +1,11 @@
-version: 1
-task_definition:
-  services:
-    web:
-      essential: true
-      mem_limit: 28000000
+# version: 1
+# task_definition:
+#   services:
+#     web:
+#       essential: true
+#       mem_limit: 28000000
 
-    mydb:
-      essential: true
-      mem_limit: 28000000
+#     mydb:
+#       essential: true
+#       mem_limit: 28000000
       
-  docker_volumes:
-    - name: odoo-web-data
-      scope: "shared"
-      autoprovision: true
-    - name: odoo-db-data
-      scope: "shared"
-      autoprovision: true

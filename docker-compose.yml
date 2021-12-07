@@ -5,8 +5,8 @@ networks:
 
 volumes:
   ssx-db-data:
-  odoo-web-data:
-
+    external: true
+    name: 
 services:
   web:
     image: odoo:15.0
@@ -19,7 +19,7 @@ services:
     - USER=odoo
     - PASSWORD=myodoo
     volumes:
-      - odoo-web-data:/var/lib/odoo
+      # - odoo-web-data:/var/lib/odoo
       - ./custom_addons:/mnt/extra-addons
       - ./config:/etc/odoo
     networks:

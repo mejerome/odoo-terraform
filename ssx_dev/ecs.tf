@@ -20,12 +20,12 @@ resource "aws_ecs_service" "ssx-ecs-service" {
   name                 = "${var.app_name}-${var.app_environment}-ecs-service"
   cluster              = aws_ecs_cluster.ssx-cluster.id
   task_definition      = aws_ecs_task_definition.odoo.arn
-  launch_type          = "FARGATE"
+  launch_type          = "EC2"
   desired_count        = 1
   force_new_deployment = true
   network_configuration {
     subnets          = aws_subnet.public.*.id
-    assign_public_ip = true
+    assign_public_ip = false
     security_groups = [
       aws_security_group.ecs_sg.id,
       aws_security_group.loadbalancer-sg.id

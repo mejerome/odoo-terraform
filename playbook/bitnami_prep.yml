@@ -28,7 +28,7 @@
         dest: /home/bitnami/.aws/credentials
 
     - name: Add custom_addons as addons_path to odoo.conf
-      fileinline:
+      lineinfile:
         path: /opt/bitnami/odoo/conf/odoo.conf
         regexp: '^addons_path'
         line: 'addons_path = /opt/bitnami/odoo/addons,/home/bitnami/custom_addons'
@@ -45,17 +45,3 @@
 
     - name: Ensure chrony is present
       apt:  name=chrony state=present
-
-    - name: Edit crony conf file
-      shell: "sed -i '1s/^/server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4\n/' /etc/chrony/chrony.conf"
-
-    - name: Restart chrony
-      shell: "/etc/init.d/chrony restart"
-      
-
-    - name: Set S3 backup cronjob
-      cron:
-        name: odoo_backup
-        user: bitnami
-        hour: '*/1'
-        job: aws s3 sync /home/bitnami/odoo_backup s3://ssx-postgres-backups/ssx-restore/
