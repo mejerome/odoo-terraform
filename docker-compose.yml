@@ -8,9 +8,13 @@ services:
       - "80:8069"
     volumes:
       - ./custom_addons:/mnt/extra-addons
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=password
   db:
     image: postgres:13
     environment:
       - POSTGRES_DB=postgres
-      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_PASSWORD=password
       - POSTGRES_USER=odoo
